@@ -109,6 +109,11 @@
 </head>
 <body>
 
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- Start Experience -->
     <div id="intro-overlay">
         <h1 style="font-family: 'Permanent Marker'; font-size: 3.5rem; color: var(--maroon);">Ready for your surprise?</h1>
@@ -121,7 +126,10 @@
     <!-- Section 1: Hero -->
     <section>
         <h1 class="title">HAPPY BIRTHDAY <br> RAKSHA MA'AM</h1>
-        <div class="instruction-box">🎈 Pop the balloons by clicking them!</div>
+        <div class="instruction-box">
+            Turn on your Laptop/Phone's volume...<br>
+            Also you can pop the balloons by clicking on them 😊
+        </div>
     </section>
 
     <!-- Section 2: Interactive Cake -->
@@ -135,8 +143,8 @@
         </div>
         
         <div class="instruction-box">
-            <b>Decorate the cake. Make a wish and blow the candle by clicking the flame.</b><br>
-            You can play a birthday song too if you want. I tried adding but coundn't ab itni hi coding aati thi mujhe 😂
+            Decorate the cake. Make a wish and blow the candle by clicking the flame.
+            You can play a birthday song too if you want. I tried to make it more realistic but coundn't ab itni hi coding aati thi mujhe 😂
         </div>
         
         <div style="margin-top: 30px; display: flex; gap: 15px; z-index: 100;">
@@ -161,7 +169,7 @@
         </div>
     </section>
 
-    <!-- Section 4: Exam Spotter (New Page) -->
+    <!-- Section 4: Exam Spotter -->
     <section>
         <h2 style="font-family: 'Permanent Marker'; font-size: 3rem; margin-bottom: 30px;">Exam Corner</h2>
         <div class="card" style="width: 350px;" onclick="openSpotter()">
@@ -171,7 +179,7 @@
         <p style="margin-top: 20px; font-weight: bold;">(Click to solve your special task!)</p>
     </section>
 
-    <!-- Section 5: Gift Hearts (New Page) -->
+    <!-- Section 5: Gift Hearts -->
     <section>
         <h2 style="font-family: 'Permanent Marker'; font-size: 3rem; margin-bottom: 30px;">The Gift Status</h2>
         <div class="grid">
@@ -216,10 +224,20 @@
 
     <script>
         function startApp() {
+            // Hide overlay
             document.getElementById('intro-overlay').style.display = 'none';
+            
+            // Audio Logic
+            const music = document.getElementById('bg-music');
+            music.volume = 1.0;
+            music.play().catch(error => {
+                console.log("Audio playback was prevented by the browser. Try clicking anywhere else on the page.");
+            });
+
+            // Confetti
             confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
             
-            // Continuous Graffiti Loop (with Cold Tea-Tanic)
+            // Graffiti Loop
             const words = ["WISDOM", "CALM", "KINDNESS", "RAKSHA MA'AM", "Cold Tea-Tanic", "PAPA KI PARI", "GENTLE", "HBD"];
             setInterval(() => {
                 const s = document.createElement('span');
@@ -232,7 +250,7 @@
                 gsap.to(s, { x: window.innerWidth + 500, duration: 10 + Math.random()*10, ease: "none", onComplete: () => s.remove() });
             }, 500);
 
-            // Constant Sparkle Engine
+            // Sparkles
             setInterval(() => {
                 const sp = document.createElement('span');
                 sp.className = 'sparkle';
@@ -243,7 +261,7 @@
                 gsap.fromTo(sp, {scale: 0, opacity: 0}, {scale: 1, opacity: 1, duration: 1, yoyo: true, repeat: 1, onComplete: () => sp.remove()});
             }, 100);
 
-            // Balloon Spawning
+            // Balloons
             setInterval(() => {
                 const b = document.createElement('div');
                 b.className = 'balloon';
